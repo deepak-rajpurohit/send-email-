@@ -8,11 +8,14 @@ use App\Mail\welocomeEmail;
 class MailController extends Controller
 {
     //
-    function sendEmail(){
-        $to="deepak.codoffer@gmail.com";
-        $msg="Hello! Deepak, It's Your first Email ";
-        $subject="Test Email";
+    function sendEmail(Request $request){
+
+        $to=$request->to;
+        $msg=$request->message;
+        $subject=$request->subject;
         Mail::to($to)->send(new welocomeEmail($msg, $subject));
+
+        return "Email sent";
     }
 
 }
